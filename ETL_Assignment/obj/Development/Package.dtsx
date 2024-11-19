@@ -1,0 +1,1310 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/7/2024 10:23:05 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-OST9FTB"
+  DTS:CreatorName="DESKTOP-OST9FTB\NguyenPhuTrong"
+  DTS:DTSID="{1833606A-3B4A-4E92-B5FD-25F28EB08B43}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="2057"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="15"
+  DTS:VersionGUID="{9E51D38A-9D52-4C14-954A-FD021F837209}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-OST9FTB.Metadata]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{8767E7C6-72C8-4A4B-B973-6B9ABD06B934}"
+      DTS:ObjectName="DESKTOP-OST9FTB.Metadata">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=DESKTOP-OST9FTB;Initial Catalog=Metadata;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package-{8767E7C6-72C8-4A4B-B973-6B9ABD06B934}DESKTOP-OST9FTB.Metadata;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-OST9FTB.Stage]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{ABE1E110-394A-49B0-BE15-729CC2A5170A}"
+      DTS:ObjectName="DESKTOP-OST9FTB.Stage">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=DESKTOP-OST9FTB;Initial Catalog=Stage;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package-{ABE1E110-394A-49B0-BE15-729CC2A5170A}DESKTOP-OST9FTB.Stage;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{3ABB3619-A065-43A3-8AAC-B1C9EA42F55E}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.16.0;Data Source=C:\Users\NguyenPhuTrong\Downloads\ETL.Source.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Get LSET"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{F0F62FCF-8EB4-4F9A-98BD-08A003053693}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get LSET"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{8767E7C6-72C8-4A4B-B973-6B9ABD06B934}"
+          SQLTask:SqlStatementSource="select CET, LSET from data_flow where name = 'LopHoc'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get LSET 1"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{c41433d1-a3d6-425c-ab9d-055c7fc31a61}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get LSET 1"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{8767E7C6-72C8-4A4B-B973-6B9ABD06B934}"
+          SQLTask:SqlStatementSource="select CET, LSET from data_flow where name = 'HocSinh'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Set CET"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{658DBE96-2E90-439B-802E-1B242E52E255}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Set CET"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{8767E7C6-72C8-4A4B-B973-6B9ABD06B934}"
+          SQLTask:SqlStatementSource="Update data_flow set CET = GETDATE() where name = 'LopHoc'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Set CET 1"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{fe6e6656-7a82-49cd-8f4e-08700d2ddd5c}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Set CET 1"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{8767E7C6-72C8-4A4B-B973-6B9ABD06B934}"
+          SQLTask:SqlStatementSource="Update data_flow set CET = GETDATE() where name = 'HocSinh'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Set LSET"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{501DCAE3-59EE-4396-9C29-AFF752881204}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Set LSET"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{8767E7C6-72C8-4A4B-B973-6B9ABD06B934}"
+          SQLTask:SqlStatementSource="update data_flow set LSET = CET where name = 'LopHoc'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Set LSET 1"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{915758b0-9c43-42d5-a27d-fb6158057d09}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Set LSET 1"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{8767E7C6-72C8-4A4B-B973-6B9ABD06B934}"
+          SQLTask:SqlStatementSource="update data_flow set LSET = CET where name = 'HocSinh'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\source to stage HocSinh"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{61eec2e9-9a86-4bfd-aac2-d731e693dceb}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="source to stage HocSinh"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\source to stage HocSinh\HocSinh source"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="HocSinh source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">HocSinh$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\source to stage HocSinh\HocSinh source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Output].Columns[MaHS]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Output].ExternalColumns[MaHS]"
+                      length="255"
+                      lineageId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Output].Columns[MaHS]"
+                      name="MaHS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Output].Columns[TenHS]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Output].ExternalColumns[TenHS]"
+                      length="255"
+                      lineageId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Output].Columns[TenHS]"
+                      name="TenHS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Output].Columns[NgaySinh]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Output].ExternalColumns[NgaySinh]"
+                      lineageId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Output].Columns[NgaySinh]"
+                      name="NgaySinh"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Output].Columns[GioiTinh]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Output].ExternalColumns[GioiTinh]"
+                      length="255"
+                      lineageId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Output].Columns[GioiTinh]"
+                      name="GioiTinh"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Output].Columns[MaLop]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Output].ExternalColumns[MaLop]"
+                      length="255"
+                      lineageId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Output].Columns[MaLop]"
+                      name="MaLop"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Output].ExternalColumns[MaHS]"
+                      dataType="wstr"
+                      length="255"
+                      name="MaHS" />
+                    <externalMetadataColumn
+                      refId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Output].ExternalColumns[TenHS]"
+                      dataType="wstr"
+                      length="255"
+                      name="TenHS" />
+                    <externalMetadataColumn
+                      refId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Output].ExternalColumns[NgaySinh]"
+                      dataType="date"
+                      name="NgaySinh" />
+                    <externalMetadataColumn
+                      refId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Output].ExternalColumns[GioiTinh]"
+                      dataType="wstr"
+                      length="255"
+                      name="GioiTinh" />
+                    <externalMetadataColumn
+                      refId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Output].ExternalColumns[MaLop]"
+                      dataType="wstr"
+                      length="255"
+                      name="MaLop" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Error Output].Columns[MaHS]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Error Output].Columns[MaHS]"
+                      name="MaHS" />
+                    <outputColumn
+                      refId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Error Output].Columns[TenHS]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Error Output].Columns[TenHS]"
+                      name="TenHS" />
+                    <outputColumn
+                      refId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Error Output].Columns[NgaySinh]"
+                      dataType="date"
+                      lineageId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Error Output].Columns[NgaySinh]"
+                      name="NgaySinh" />
+                    <outputColumn
+                      refId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Error Output].Columns[GioiTinh]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Error Output].Columns[GioiTinh]"
+                      name="GioiTinh" />
+                    <outputColumn
+                      refId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Error Output].Columns[MaLop]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Error Output].Columns[MaLop]"
+                      name="MaLop" />
+                    <outputColumn
+                      refId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\source to stage HocSinh\HocSinhStage"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="HocSinhStage"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[stgHocSinh]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\source to stage HocSinh\HocSinhStage.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-OST9FTB.Stage]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-OST9FTB.Stage]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\source to stage HocSinh\HocSinhStage.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\source to stage HocSinh\HocSinhStage.Inputs[OLE DB Destination Input].Columns[MaHS]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="MaHS"
+                      externalMetadataColumnId="Package\source to stage HocSinh\HocSinhStage.Inputs[OLE DB Destination Input].ExternalColumns[MaHS]"
+                      lineageId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Output].Columns[MaHS]" />
+                    <inputColumn
+                      refId="Package\source to stage HocSinh\HocSinhStage.Inputs[OLE DB Destination Input].Columns[TenHS]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TenHS"
+                      externalMetadataColumnId="Package\source to stage HocSinh\HocSinhStage.Inputs[OLE DB Destination Input].ExternalColumns[TenHS]"
+                      lineageId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Output].Columns[TenHS]" />
+                    <inputColumn
+                      refId="Package\source to stage HocSinh\HocSinhStage.Inputs[OLE DB Destination Input].Columns[NgaySinh]"
+                      cachedDataType="date"
+                      cachedName="NgaySinh"
+                      externalMetadataColumnId="Package\source to stage HocSinh\HocSinhStage.Inputs[OLE DB Destination Input].ExternalColumns[NgaySinh]"
+                      lineageId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Output].Columns[NgaySinh]" />
+                    <inputColumn
+                      refId="Package\source to stage HocSinh\HocSinhStage.Inputs[OLE DB Destination Input].Columns[GioiTinh]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="GioiTinh"
+                      externalMetadataColumnId="Package\source to stage HocSinh\HocSinhStage.Inputs[OLE DB Destination Input].ExternalColumns[GioiTinh]"
+                      lineageId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Output].Columns[GioiTinh]" />
+                    <inputColumn
+                      refId="Package\source to stage HocSinh\HocSinhStage.Inputs[OLE DB Destination Input].Columns[MaLop]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="MaLop"
+                      externalMetadataColumnId="Package\source to stage HocSinh\HocSinhStage.Inputs[OLE DB Destination Input].ExternalColumns[MaLop]"
+                      lineageId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Output].Columns[MaLop]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\source to stage HocSinh\HocSinhStage.Inputs[OLE DB Destination Input].ExternalColumns[MaHS]"
+                      dataType="wstr"
+                      length="255"
+                      name="MaHS" />
+                    <externalMetadataColumn
+                      refId="Package\source to stage HocSinh\HocSinhStage.Inputs[OLE DB Destination Input].ExternalColumns[TenHS]"
+                      dataType="wstr"
+                      length="255"
+                      name="TenHS" />
+                    <externalMetadataColumn
+                      refId="Package\source to stage HocSinh\HocSinhStage.Inputs[OLE DB Destination Input].ExternalColumns[NgaySinh]"
+                      dataType="dbTimeStamp"
+                      name="NgaySinh" />
+                    <externalMetadataColumn
+                      refId="Package\source to stage HocSinh\HocSinhStage.Inputs[OLE DB Destination Input].ExternalColumns[GioiTinh]"
+                      dataType="wstr"
+                      length="255"
+                      name="GioiTinh" />
+                    <externalMetadataColumn
+                      refId="Package\source to stage HocSinh\HocSinhStage.Inputs[OLE DB Destination Input].ExternalColumns[MaLop]"
+                      dataType="wstr"
+                      length="255"
+                      name="MaLop" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\source to stage HocSinh\HocSinhStage.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\source to stage HocSinh\HocSinhStage.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\source to stage HocSinh\HocSinhStage.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\source to stage HocSinh\HocSinhStage.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\source to stage HocSinh\HocSinhStage.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\source to stage HocSinh\HocSinhStage.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\source to stage HocSinh.Paths[Excel Source Output]"
+              endId="Package\source to stage HocSinh\HocSinhStage.Inputs[OLE DB Destination Input]"
+              name="Excel Source Output"
+              startId="Package\source to stage HocSinh\HocSinh source.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\source to stage LopHoc"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{097F2A51-1ED3-4D87-980F-510CF000BF60}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="source to stage LopHoc"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\source to stage LopHoc\LopHoc source"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="LopHoc source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">LopHoc$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\source to stage LopHoc\LopHoc source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\source to stage LopHoc\LopHoc source.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\source to stage LopHoc\LopHoc source.Outputs[Excel Source Output].Columns[MaLop]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\source to stage LopHoc\LopHoc source.Outputs[Excel Source Output].ExternalColumns[MaLop]"
+                      length="255"
+                      lineageId="Package\source to stage LopHoc\LopHoc source.Outputs[Excel Source Output].Columns[MaLop]"
+                      name="MaLop"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\source to stage LopHoc\LopHoc source.Outputs[Excel Source Output].Columns[Tenlop]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\source to stage LopHoc\LopHoc source.Outputs[Excel Source Output].ExternalColumns[Tenlop]"
+                      length="255"
+                      lineageId="Package\source to stage LopHoc\LopHoc source.Outputs[Excel Source Output].Columns[Tenlop]"
+                      name="Tenlop"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\source to stage LopHoc\LopHoc source.Outputs[Excel Source Output].ExternalColumns[MaLop]"
+                      dataType="wstr"
+                      length="255"
+                      name="MaLop" />
+                    <externalMetadataColumn
+                      refId="Package\source to stage LopHoc\LopHoc source.Outputs[Excel Source Output].ExternalColumns[Tenlop]"
+                      dataType="wstr"
+                      length="255"
+                      name="Tenlop" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\source to stage LopHoc\LopHoc source.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\source to stage LopHoc\LopHoc source.Outputs[Excel Source Error Output].Columns[MaLop]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\source to stage LopHoc\LopHoc source.Outputs[Excel Source Error Output].Columns[MaLop]"
+                      name="MaLop" />
+                    <outputColumn
+                      refId="Package\source to stage LopHoc\LopHoc source.Outputs[Excel Source Error Output].Columns[Tenlop]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\source to stage LopHoc\LopHoc source.Outputs[Excel Source Error Output].Columns[Tenlop]"
+                      name="Tenlop" />
+                    <outputColumn
+                      refId="Package\source to stage LopHoc\LopHoc source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\source to stage LopHoc\LopHoc source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\source to stage LopHoc\LopHoc source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\source to stage LopHoc\LopHoc source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\source to stage LopHoc\LopHocStage"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="LopHocStage"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[stgLopHoc]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\source to stage LopHoc\LopHocStage.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-OST9FTB.Stage]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-OST9FTB.Stage]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\source to stage LopHoc\LopHocStage.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\source to stage LopHoc\LopHocStage.Inputs[OLE DB Destination Input].Columns[MaLop]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="MaLop"
+                      externalMetadataColumnId="Package\source to stage LopHoc\LopHocStage.Inputs[OLE DB Destination Input].ExternalColumns[MaLop]"
+                      lineageId="Package\source to stage LopHoc\LopHoc source.Outputs[Excel Source Output].Columns[MaLop]" />
+                    <inputColumn
+                      refId="Package\source to stage LopHoc\LopHocStage.Inputs[OLE DB Destination Input].Columns[Tenlop]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Tenlop"
+                      externalMetadataColumnId="Package\source to stage LopHoc\LopHocStage.Inputs[OLE DB Destination Input].ExternalColumns[Tenlop]"
+                      lineageId="Package\source to stage LopHoc\LopHoc source.Outputs[Excel Source Output].Columns[Tenlop]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\source to stage LopHoc\LopHocStage.Inputs[OLE DB Destination Input].ExternalColumns[MaLop]"
+                      dataType="wstr"
+                      length="255"
+                      name="MaLop" />
+                    <externalMetadataColumn
+                      refId="Package\source to stage LopHoc\LopHocStage.Inputs[OLE DB Destination Input].ExternalColumns[Tenlop]"
+                      dataType="wstr"
+                      length="255"
+                      name="Tenlop" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\source to stage LopHoc\LopHocStage.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\source to stage LopHoc\LopHocStage.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\source to stage LopHoc\LopHocStage.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\source to stage LopHoc\LopHocStage.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\source to stage LopHoc\LopHocStage.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\source to stage LopHoc\LopHocStage.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\source to stage LopHoc.Paths[Excel Source Output]"
+              endId="Package\source to stage LopHoc\LopHocStage.Inputs[OLE DB Destination Input]"
+              name="Excel Source Output"
+              startId="Package\source to stage LopHoc\LopHoc source.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate table HocSinh"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{9d313ba8-0a20-4336-9785-fe4548f2fbf5}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate table HocSinh"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{ABE1E110-394A-49B0-BE15-729CC2A5170A}"
+          SQLTask:SqlStatementSource="truncate table stgHocSinh;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate table LopHoc"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{C9A1A6B3-95D5-4F46-AFE2-9F9528D94915}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate table LopHoc"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{ABE1E110-394A-49B0-BE15-729CC2A5170A}"
+          SQLTask:SqlStatementSource="truncate table stgLopHoc;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{E808AA25-5129-46A2-8457-4BCE5995CFDF}"
+      DTS:From="Package\Set CET"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Get LSET" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{F4DC4AB2-BF1F-4CFE-89A2-EBA02D5CDB6A}"
+      DTS:From="Package\Get LSET"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Truncate table LopHoc" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{F1B8B94A-F5C9-4AEE-B12B-5F8360F8523C}"
+      DTS:From="Package\Truncate table LopHoc"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\source to stage LopHoc" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{1A541487-BB86-4D95-BFA3-5B9ADC18392C}"
+      DTS:From="Package\source to stage LopHoc"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Set LSET" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{C89D85FE-468F-48D1-9A4E-4D781E779B4E}"
+      DTS:From="Package\Set CET 1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Get LSET 1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{9199216D-EFEE-4007-9C94-6049C215383A}"
+      DTS:From="Package\Get LSET 1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Truncate table HocSinh" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{D89A968F-C17A-4916-BE13-F8B9FBC4EE36}"
+      DTS:From="Package\Truncate table HocSinh"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\source to stage HocSinh" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{EC8053EB-9D28-427F-8D7D-9901E680E876}"
+      DTS:From="Package\source to stage HocSinh"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\Set LSET 1" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="188.8,41.6"
+          Id="Package\source to stage LopHoc"
+          TopLeft="258.571429121859,322.705882070077" />
+        <NodeLayout
+          Size="162.4,41.6"
+          Id="Package\Set CET"
+          TopLeft="265.000000564115,41.2941176108629" />
+        <NodeLayout
+          Size="121.6,41.6"
+          Id="Package\Get LSET"
+          TopLeft="260.000000553472,142.999999874655" />
+        <NodeLayout
+          Size="172,41.6"
+          Id="Package\Set LSET"
+          TopLeft="265.714286279922,431.294117269013" />
+        <NodeLayout
+          Size="184.8,41.6"
+          Id="Package\Truncate table LopHoc"
+          TopLeft="261.428571985084,227.588235119171" />
+        <NodeLayout
+          Size="192,41.6"
+          Id="Package\source to stage HocSinh"
+          TopLeft="563.571429771124,328.011764402239" />
+        <NodeLayout
+          Size="162.4,41.6"
+          Id="Package\Set CET 1"
+          TopLeft="563.571429771124,42.7764705346118" />
+        <NodeLayout
+          Size="130.4,41.6"
+          Id="Package\Get LSET 1"
+          TopLeft="559.285715476287,141.423529271673" />
+        <NodeLayout
+          Size="129.6,41.6"
+          Id="Package\Set LSET 1"
+          TopLeft="565.000001202737,429.71764666603" />
+        <NodeLayout
+          Size="188,41.6"
+          Id="Package\Truncate table HocSinh"
+          TopLeft="560.714286907899,226.011764516189" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="346.200000564115,82.8941176108629">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-25.4000000106437,60.105882263792"
+              Start="0,0"
+              End="-25.4000000106437,52.605882263792">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.052941131896" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.052941131896"
+                    Point2="0,30.052941131896"
+                    Point3="-4,30.052941131896" />
+                  <mssgle:LineSegment
+                    End="-21.4000000106437,30.052941131896" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-21.4000000106437,30.052941131896"
+                    Point2="-25.4000000106437,30.052941131896"
+                    Point3="-25.4000000106437,34.052941131896" />
+                  <mssgle:LineSegment
+                    End="-25.4000000106437,52.605882263792" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="320.800000553472,184.599999874655">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="33.0285714316124,42.9882352445157"
+              Start="0,0"
+              End="33.0285714316124,35.4882352445157">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.4941176222579" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.4941176222579"
+                    Point2="0,21.4941176222579"
+                    Point3="4,21.4941176222579" />
+                  <mssgle:LineSegment
+                    End="29.0285714316124,21.4941176222579" />
+                  <mssgle:CubicBezierSegment
+                    Point1="29.0285714316124,21.4941176222579"
+                    Point2="33.0285714316124,21.4941176222579"
+                    Point3="33.0285714316124,25.4941176222579" />
+                  <mssgle:LineSegment
+                    End="33.0285714316124,35.4882352445157" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="353.400000553472,269.188235119171">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53.5176469509063"
+              Start="0,0"
+              End="0,46.0176469509063">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.0176469509063" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="352.342857700891,364.305882070077">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,66.9882351989355"
+              Start="0,0"
+              End="0,59.4882351989355">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,59.4882351989355" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="644.771429771124,84.3764705346118">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-20.2857142948374,57.0470587370615"
+              Start="0,0"
+              End="-20.2857142948374,49.5470587370615">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.5235293685308" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.5235293685308"
+                    Point2="0,28.5235293685308"
+                    Point3="-4,28.5235293685308" />
+                  <mssgle:LineSegment
+                    End="-16.2857142948374,28.5235293685308" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-16.2857142948374,28.5235293685308"
+                    Point2="-20.2857142948374,28.5235293685308"
+                    Point3="-20.2857142948374,32.5235293685308" />
+                  <mssgle:LineSegment
+                    End="-20.2857142948374,49.5470587370615" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="624.485715476287,183.023529271673">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="30.2285714316124,42.9882352445154"
+              Start="0,0"
+              End="30.2285714316124,35.4882352445154">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.4941176222577" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.4941176222577"
+                    Point2="0,21.4941176222577"
+                    Point3="4,21.4941176222577" />
+                  <mssgle:LineSegment
+                    End="26.2285714316124,21.4941176222577" />
+                  <mssgle:CubicBezierSegment
+                    Point1="26.2285714316124,21.4941176222577"
+                    Point2="30.2285714316124,21.4941176222577"
+                    Point3="30.2285714316124,25.4941176222577" />
+                  <mssgle:LineSegment
+                    End="30.2285714316124,35.4882352445154" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="657.142858339512,267.611764516189">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.3999998860499"
+              Start="0,0"
+              End="0,52.8999998860499">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.8999998860499" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="659.571429771124,369.611764402239">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-29.7714285683871,60.1058822637916"
+              Start="0,0"
+              End="-29.7714285683871,52.6058822637916">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.0529411318958" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.0529411318958"
+                    Point2="0,30.0529411318958"
+                    Point3="-4,30.0529411318958" />
+                  <mssgle:LineSegment
+                    End="-25.7714285683871,30.0529411318958" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-25.7714285683871,30.0529411318958"
+                    Point2="-29.7714285683871,30.0529411318958"
+                    Point3="-29.7714285683871,34.0529411318958" />
+                  <mssgle:LineSegment
+                    End="-29.7714285683871,52.6058822637916" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\source to stage LopHoc">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="147.2,41.6"
+          Id="Package\source to stage LopHoc\LopHoc source"
+          TopLeft="271.428572006372,64.2352940613423" />
+        <NodeLayout
+          Size="140,41.6"
+          Id="Package\source to stage LopHoc\LopHocStage"
+          TopLeft="276.428572017015,259.9999997721" />
+        <EdgeLayout
+          Id="Package\source to stage LopHoc.Paths[Excel Source Output]"
+          TopLeft="345.728572011693,105.835294061342">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,154.164705710758"
+              Start="0,0"
+              End="0,146.664705710758">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,146.664705710758" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\source to stage LopHoc\LopHoc source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\source to stage LopHoc\LopHocStage">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\source to stage HocSinh">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="143.2,41.6"
+          Id="Package\source to stage HocSinh\HocSinhStage"
+          TopLeft="577.142858371443,259.235293890417" />
+        <NodeLayout
+          Size="151.2,41.6"
+          Id="Package\source to stage HocSinh\HocSinh source"
+          TopLeft="567.857144065962,64.2352940613423" />
+        <EdgeLayout
+          Id="Package\source to stage HocSinh.Paths[Excel Source Output]"
+          TopLeft="646.100001218702,105.835294061342">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,153.399999829075"
+              Start="0,0"
+              End="0,145.899999829075">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,145.899999829075" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\source to stage HocSinh\HocSinhStage">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
